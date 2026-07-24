@@ -126,31 +126,36 @@ export function DropResumePage() {
   };
 
   return (
-    <div className="relative min-h-[calc(100vh-140px)] bg-slate-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="relative min-h-[calc(100vh-140px)] bg-space-950 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       {/* Background Skyline Accent */}
-      <div className="absolute inset-0 z-0 select-none pointer-events-none opacity-10">
+      <div className="absolute inset-0 z-0 select-none pointer-events-none opacity-[0.03] mix-blend-luminosity">
         <img 
           src="/skyline.jpg" 
           alt="" 
           className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-transparent to-slate-50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-space-950 via-transparent to-space-950" />
       </div>
 
+      {/* Decorative background blurs */}
+      <div className="absolute top-1/4 left-1/3 size-[350px] rounded-full bg-gold-500/5 blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/3 size-[350px] rounded-full bg-indigo-500/5 blur-[100px] pointer-events-none" />
+
       <div className="relative z-10 w-full max-w-xl">
-        <Link to="/" className="inline-flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-brand-600 mb-6 transition">
+        <Link to="/" className="inline-flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-gold-500 mb-6 transition">
           <ArrowLeft size={16} /> Back to Home
         </Link>
 
-        <div className="panel p-6 sm:p-8 bg-white shadow-float border border-slate-200/80 rounded-3xl">
-          <h1 className="text-3xl font-extrabold text-ink tracking-tight">Submit your CV</h1>
-          <p className="mt-2 text-sm text-muted">Upload your CV to join our private Notion candidate database.</p>
+        <div className="panel p-6 sm:p-8 bg-white/[0.01] border border-white/10 backdrop-blur-md shadow-float rounded-3xl relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-gold-500 via-brand-500 to-accent" />
+          <h1 className="text-3xl font-extrabold text-white tracking-tight">Submit your CV</h1>
+          <p className="mt-2 text-sm text-slate-400">Upload your CV to join our private Notion candidate database.</p>
 
           {status?.type === "success" ? (
-            <div className="mt-6 p-6 bg-emerald-50 rounded-2xl border border-emerald-100 text-center">
-              <CheckCircle2 className="size-12 text-emerald-500 mx-auto" />
-              <h3 className="mt-3 font-bold text-emerald-800 text-base">Submission Complete</h3>
-              <p className="mt-2 text-sm text-emerald-700 leading-relaxed">{status.message}</p>
+            <div className="mt-6 p-6 bg-emerald-950/20 rounded-2xl border border-emerald-500/20 text-center">
+              <CheckCircle2 className="size-12 text-emerald-400 mx-auto" />
+              <h3 className="mt-3 font-bold text-emerald-300 text-base">Submission Complete</h3>
+              <p className="mt-2 text-sm text-emerald-400/90 leading-relaxed">{status.message}</p>
               <button 
                 type="button" 
                 onClick={() => setStatus(null)} 
@@ -162,15 +167,15 @@ export function DropResumePage() {
           ) : (
             <form onSubmit={handleSubmit} className="mt-6 space-y-4">
               {status?.type === "error" && (
-                <div className="p-4 bg-rose-50 border border-rose-100 rounded-xl text-xs font-semibold text-rose-700 flex gap-2.5 items-start">
-                  <AlertCircle className="size-4 shrink-0 text-rose-500 mt-0.5" />
+                <div className="p-4 bg-rose-950/30 border border-rose-500/20 rounded-xl text-xs font-semibold text-rose-300 flex gap-2.5 items-start">
+                  <AlertCircle className="size-4 shrink-0 text-rose-450 mt-0.5" />
                   <span>{status.message}</span>
                 </div>
               )}
 
               {/* Name Input */}
               <div>
-                <label htmlFor="name" className="label">Full Name <span className="text-rose-500">*</span></label>
+                <label htmlFor="name" className="label">Full Name <span className="text-gold-500">*</span></label>
                 <div className="relative">
                   <User className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-slate-400" />
                   <input
@@ -187,7 +192,7 @@ export function DropResumePage() {
 
               {/* Email Input */}
               <div>
-                <label htmlFor="email" className="label">Email Address <span className="text-rose-500">*</span></label>
+                <label htmlFor="email" className="label">Email Address <span className="text-gold-500">*</span></label>
                 <div className="relative">
                   <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-slate-400" />
                   <input
@@ -238,7 +243,7 @@ export function DropResumePage() {
 
               {/* File Dropzone */}
               <div>
-                <span className="label">Upload CV (PDF or DOCX) <span className="text-rose-500">*</span></span>
+                <span className="label">Upload CV (PDF or DOCX) <span className="text-gold-500">*</span></span>
                 
                 <input
                   ref={fileInputRef}
@@ -256,31 +261,31 @@ export function DropResumePage() {
                     onDragLeave={handleDrag}
                     onDrop={handleDrop}
                     onClick={() => fileInputRef.current?.click()}
-                    className={`border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer transition flex flex-col items-center justify-center ${
+                    className={`border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer transition-all duration-300 flex flex-col items-center justify-center ${
                       dragActive 
-                        ? "border-brand-500 bg-brand-50/50" 
-                        : "border-slate-200 hover:border-brand-400 hover:bg-slate-50/50"
+                        ? "border-gold-500 bg-gold-500/10 shadow-[0_0_20px_rgba(229,193,88,0.15)]" 
+                        : "border-white/10 hover:border-gold-500/60 hover:bg-white/[0.02]"
                     }`}
                   >
-                    <UploadCloud className="size-9 text-slate-400 mb-2.5" />
-                    <p className="text-sm font-semibold text-slate-700">Drag your CV file here</p>
-                    <p className="text-xs text-muted mt-1">or click to browse from device (Max 5MB)</p>
+                    <UploadCloud className="size-9 text-gold-500/80 mb-2.5 transition-transform duration-300" />
+                    <p className="text-sm font-bold text-slate-200">Drag your CV file here</p>
+                    <p className="text-xs text-slate-400 mt-1">or click to browse from device (Max 5MB)</p>
                   </div>
                 ) : (
-                  <div className="flex items-center justify-between border border-brand-100 bg-brand-50/40 rounded-2xl p-4">
+                  <div className="flex items-center justify-between border border-gold-500/25 bg-gold-500/5 rounded-2xl p-4 shadow-md">
                     <div className="flex items-center gap-3 min-w-0">
-                      <div className="grid size-10 place-items-center rounded-xl bg-white text-brand-600 border border-brand-100">
+                      <div className="grid size-10 place-items-center rounded-xl bg-space-900 text-gold-500 border border-white/5">
                         <FileText size={20} />
                       </div>
                       <div className="min-w-0">
-                        <p className="text-sm font-bold text-ink truncate">{file.name}</p>
-                        <p className="text-xs text-muted mt-0.5">{(file.size / (1024 * 1024)).toFixed(2)} MB</p>
+                        <p className="text-sm font-bold text-white truncate">{file.name}</p>
+                        <p className="text-xs text-slate-450 mt-0.5">{(file.size / (1024 * 1024)).toFixed(2)} MB</p>
                       </div>
                     </div>
                     <button
                       type="button"
                       onClick={removeFile}
-                      className="p-2 text-slate-400 hover:text-rose-600 rounded-lg hover:bg-white transition"
+                      className="p-2 text-slate-400 hover:text-rose-500 rounded-lg hover:bg-white/5 transition"
                     >
                       <Trash2 size={17} />
                     </button>
@@ -291,7 +296,7 @@ export function DropResumePage() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="btn-primary w-full py-3 mt-4 text-sm font-bold shadow-md hover:shadow-lg disabled:opacity-50"
+                className="btn-primary w-full py-3.5 mt-6 text-sm font-bold"
               >
                 {submitting ? "Submitting..." : "Submit CV"}
               </button>

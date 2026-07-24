@@ -52,7 +52,7 @@ export function LandingPage() {
   return (
     <>
       <section
-        className="relative flex min-h-[calc(100vh-140px)] items-center overflow-hidden border-b border-slate-200 bg-white"
+        className="relative flex min-h-[calc(100vh-140px)] items-center overflow-hidden border-b border-white/5 bg-space-950"
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => {
@@ -60,86 +60,135 @@ export function LandingPage() {
           setMousePos({ x: 50, y: 50 });
         }}
       >
-        <div className="pointer-events-none absolute inset-0 z-0 select-none">
+        {/* Deep glowing background lights */}
+        <div className="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden">
+          {/* Base Background Image (Floats in from right and stays moderately visible) */}
           <img
             src="/sydney-hero.jpg"
             alt="Sydney Harbour skyline"
             style={{
               transformOrigin: `${mousePos.x}% ${mousePos.y}%`,
-              transform: isHovered ? "scale(1.03)" : "scale(1)",
-              transition: isHovered ? "transform 0.4s ease-out" : "transform 0.8s ease-out"
+              transform: isHovered ? "scale(1.02)" : "scale(1)",
+              transition: "transform 0.6s ease-out"
             }}
-            className="h-full w-full object-cover opacity-[0.98] brightness-110 contrast-[1.02]"
+            className="h-full w-full object-cover opacity-[0.22] mix-blend-luminosity filter brightness-[0.8] contrast-125 animate-float-right"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/80 to-white md:bg-gradient-to-r md:from-white/95 md:via-white/70 md:to-transparent" />
+
+          {/* Spotlight Highlight Image (Brightens the picture around cursor on hover) */}
+          <img
+            src="/sydney-hero.jpg"
+            alt=""
+            style={{
+              transformOrigin: `${mousePos.x}% ${mousePos.y}%`,
+              transform: isHovered ? "scale(1.02)" : "scale(1)",
+              transition: "transform 0.6s ease-out, opacity 0.4s ease-out",
+              opacity: isHovered ? 0.45 : 0,
+              WebkitMaskImage: `radial-gradient(circle 280px at ${mousePos.x}% ${mousePos.y}%, black 20%, transparent 100%)`,
+              maskImage: `radial-gradient(circle 280px at ${mousePos.x}% ${mousePos.y}%, black 20%, transparent 100%)`
+            }}
+            className="absolute inset-0 h-full w-full object-cover filter brightness-[0.95] contrast-110 pointer-events-none animate-float-right"
+          />
+
+          {/* Custom radial glow tracking mouse position */}
+          <div 
+            className="absolute inset-0 transition-opacity duration-500 opacity-60 pointer-events-none md:opacity-40"
+            style={{
+              background: `radial-gradient(circle 450px at ${mousePos.x}% ${mousePos.y}%, rgba(99, 102, 241, 0.15), transparent 80%), 
+                           radial-gradient(circle 300px at ${mousePos.x}% ${mousePos.y}%, rgba(229, 193, 88, 0.08), transparent 70%)`
+            }}
+          />
+          {/* Constant corner glow spots */}
+          <div className="absolute top-1/4 right-1/4 size-[400px] rounded-full bg-gold-500/10 blur-[120px] pointer-events-none" />
+          <div className="absolute bottom-1/4 left-1/4 size-[500px] rounded-full bg-indigo-500/10 blur-[150px] pointer-events-none" />
         </div>
 
-        <div className="page-shell relative z-10 py-20 lg:py-28">
+        <div className="page-shell relative z-10 py-20 lg:py-28 animate-float-left">
           <div className="max-w-3xl">
-            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-brand-100 bg-brand-50 px-3.5 py-1.5 text-xs font-bold text-brand-700">
-              <Sparkles size={14} />
+            <div className="inline-flex w-fit items-center gap-2.5 rounded-full border border-gold-500/30 bg-gold-500/10 px-4 py-2 text-xs font-bold text-gold-400 shadow-[0_0_15px_rgba(229,193,88,0.1)]">
+              <Sparkles size={14} className="animate-pulse" />
               AI Data Centre & Digital Infrastructure Recruitment · Australia
             </div>
-            <h1 className="mt-6 text-4xl font-extrabold leading-[1.04] tracking-tight text-ink sm:text-5xl lg:text-7xl">
+            <h1 className="mt-8 text-4xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-7xl">
               The build-out is here.
-              <span className="mt-1 block text-slate-500">Someone has to build it.</span>
-              <span className="mt-1 block text-brand-600">We find that someone.</span>
+              <span className="mt-2 block text-black font-black tracking-wide" style={{ textShadow: "0 0 10px rgba(255, 255, 255, 0.95), 0 0 20px rgba(229, 193, 88, 0.8)" }}>Someone has to build it.</span>
+              <span className="mt-2 block text-gradient-gold filter drop-shadow-[0_0_15px_rgba(229,193,88,0.2)]">We find that someone.</span>
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">
+            <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
               TechStax recruits the engineers, builders and operators behind Australia's AI infrastructure — one critical hire or an entire delivery team.
             </p>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Link to="/drop-resume" className="btn-primary px-7 py-4 text-base">
+                Drop your CV <ArrowRight size={18} />
+              </Link>
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=mayank%40infocusgroup.au&su=TechStax%20Employer%20Enquiry"
+                target="_blank"
+                rel="noreferrer"
+                className="btn-secondary px-7 py-4 text-base"
+              >
+                Hiring Talent? Contact Us
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="about" className="bg-white py-20 sm:py-24">
+      <section id="about" className="bg-space-900 border-b border-white/5 py-20 sm:py-24">
         <div className="page-shell">
           <div className="max-w-5xl">
             <p className="eyebrow">Who we are</p>
-            <h2 className="mt-5 text-3xl font-extrabold leading-tight tracking-tight text-ink sm:text-5xl">
+            <h2 className="mt-6 text-3xl font-extrabold leading-snug tracking-tight text-white sm:text-5xl">
               Most recruiters send CVs.{" "}
-              <span className="text-slate-500">We've delivered the programs, run the migrations and sat in the war rooms —</span>{" "}
-              so we screen candidates the way <span className="text-brand-600">your own engineers would.</span>
+              <span className="text-slate-400 font-medium">We've delivered the programs, run the migrations and sat in the war rooms —</span>{" "}
+              so we screen candidates the way <span className="text-gradient-gold">your own engineers would.</span>
             </h2>
           </div>
         </div>
       </section>
 
-      <section id="expertise" className="border-y border-slate-200 bg-surface py-20 sm:py-24">
+      <section id="expertise" className="bg-space-950 border-b border-white/5 py-20 sm:py-24">
         <div className="page-shell">
           <div className="max-w-2xl">
             <p className="eyebrow">Expertise</p>
-            <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">The whole facility. One partner.</h2>
-            <p className="mt-4 text-lg leading-8 text-muted">From the first shovel to 24/7 operations — six practices that cover everything a data centre needs to exist.</p>
+            <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">The whole facility. One partner.</h2>
+            <p className="mt-4 text-lg leading-8 text-slate-400">From the first shovel to 24/7 operations — six practices that cover everything a data centre needs to exist.</p>
           </div>
-          <div className="mt-12 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-card">
+          <div className="mt-12 overflow-hidden rounded-3xl border border-white/5 bg-white/[0.01] backdrop-blur-md shadow-2xl">
             {expertise.map(([title, description], index) => (
-              <div key={title} className="group grid gap-3 border-b border-slate-200 px-6 py-6 transition last:border-b-0 hover:bg-brand-50/50 md:grid-cols-[56px_1fr_1.4fr_28px] md:items-center md:gap-6">
-                <span className="text-xs font-extrabold tracking-[0.14em] text-brand-600">{String(index + 1).padStart(2, "0")}</span>
-                <h3 className="text-lg font-extrabold text-ink sm:text-xl">{title}</h3>
-                <p className="text-sm leading-6 text-muted">{description}</p>
-                <ArrowRight className="hidden text-slate-300 transition group-hover:translate-x-1 group-hover:text-brand-600 md:block" size={20} />
+              <div 
+                key={title} 
+                className="group grid gap-3 border-b border-white/5 px-6 py-6 transition-all duration-300 hover:bg-white/[0.03] hover:border-gold-500/20 md:grid-cols-[56px_1.1fr_1.4fr_28px] md:items-center md:gap-6"
+              >
+                <span className="text-xs font-extrabold tracking-[0.14em] text-accent filter drop-shadow-[0_0_8px_rgba(56,189,248,0.2)]">{String(index + 1).padStart(2, "0")}</span>
+                <h3 className="text-lg font-extrabold text-white transition group-hover:text-gold-400 sm:text-xl">{title}</h3>
+                <p className="text-sm leading-6 text-slate-350">{description}</p>
+                <ArrowRight className="hidden text-slate-500 transition-all duration-300 group-hover:translate-x-1.5 group-hover:text-gold-500 md:block" size={20} />
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-ink py-20 text-white sm:py-24">
+      <section className="bg-space-900 border-b border-white/5 py-20 text-white sm:py-24">
         <div className="page-shell">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-300">Why TechStax</p>
-          <h2 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Three things we do that most don't.</h2>
-          <div className="mt-12 grid gap-5 lg:grid-cols-3">
+          <p className="eyebrow">Why TechStax</p>
+          <h2 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl text-white">Three things we do that most don't.</h2>
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {differentiators.map((item, index) => {
               const Icon = item.icon;
               return (
-                <article key={item.title} className="rounded-3xl border border-white/10 bg-white/[0.04] p-7 transition hover:-translate-y-1 hover:bg-white/[0.07]">
+                <article 
+                  key={item.title} 
+                  className="rounded-3xl border border-white/5 bg-white/[0.01] backdrop-blur-md p-8 transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/[0.03] hover:border-gold-500/30 hover:shadow-[0_0_30px_rgba(229,193,88,0.15)]"
+                >
                   <div className="flex items-center justify-between">
-                    <span className="grid size-11 place-items-center rounded-2xl bg-brand-600"><Icon size={21} /></span>
-                    <span className="text-xs font-bold tracking-[0.16em] text-blue-300">— 0{index + 1}</span>
+                    <span className="grid size-11 place-items-center rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 text-space-950 shadow-[0_0_15px_rgba(229,193,88,0.25)]">
+                      <Icon size={21} />
+                    </span>
+                    <span className="text-xs font-bold tracking-[0.16em] text-gold-400">— 0{index + 1}</span>
                   </div>
-                  <h3 className="mt-7 text-xl font-extrabold leading-snug">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-slate-300">{item.description}</p>
+                  <h3 className="mt-8 text-xl font-extrabold leading-snug text-white">{item.title}</h3>
+                  <p className="mt-4 text-sm leading-6 text-slate-400">{item.description}</p>
                 </article>
               );
             })}
@@ -147,18 +196,19 @@ export function LandingPage() {
         </div>
       </section>
 
-      <section id="insights" className="border-y border-slate-200 bg-surface py-20 sm:py-24">
+      <section id="insights" className="bg-space-950 border-b border-white/5 py-20 sm:py-24">
         <div className="page-shell">
           <p className="eyebrow">Intelligence</p>
-          <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">We trade in market truth.</h2>
-          <p className="mt-4 text-lg text-muted">The best firms in this sector publish what they know. So do we.</p>
-          <div className="mt-12 grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
-            <article className="relative flex min-h-80 flex-col justify-end overflow-hidden rounded-3xl bg-ink p-8 text-white sm:p-10">
-              <span className="absolute -right-4 -top-10 text-[9rem] font-black leading-none text-brand-500/10">2026</span>
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-300">Flagship report</p>
-              <h3 className="mt-3 text-3xl font-extrabold">The Australian Data Centre Salary Guide</h3>
-              <p className="mt-4 max-w-xl text-sm leading-6 text-slate-300">Salaries, day rates and demand signals across every discipline in the build-out — from HV trades to AI platform teams.</p>
-              <div className="mt-7">
+          <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">We trade in market truth.</h2>
+          <p className="mt-4 text-lg text-slate-450">The best firms in this sector publish what they know. So do we.</p>
+          <div className="mt-12 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+            <article className="relative flex min-h-80 flex-col justify-end overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-space-900 to-space-950 p-8 text-white sm:p-10 shadow-float group hover:border-gold-500/30 transition-all duration-500">
+              <span className="absolute -right-4 -top-10 text-[9rem] font-black leading-none text-gold-500/5 select-none transition group-hover:text-gold-500/10 duration-500">2026</span>
+              <div className="absolute top-8 right-8 size-20 rounded-full bg-gold-500/5 blur-2xl pointer-events-none group-hover:bg-gold-500/15 duration-500" />
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-gold-400">Flagship report</p>
+              <h3 className="mt-3 text-3xl font-extrabold text-white">The Australian Data Centre Salary Guide</h3>
+              <p className="mt-4 max-w-xl text-sm leading-6 text-slate-400">Salaries, day rates and demand signals across every discipline in the build-out — from HV trades to AI platform teams.</p>
+              <div className="mt-8">
                 <a
                   href="https://mail.google.com/mail/?view=cm&fs=1&to=mayank%40infocusgroup.au&su=Salary%20Guide%20Early%20Access"
                   target="_blank"
@@ -169,68 +219,75 @@ export function LandingPage() {
                 </a>
               </div>
             </article>
-            <div className="grid gap-5">
-              <article className="rounded-3xl border border-slate-200 bg-white p-7 shadow-card">
-                <p className="eyebrow">Insights</p><h3 className="mt-3 text-xl font-extrabold text-ink">Market briefings</h3>
-                <p className="mt-2 text-sm leading-6 text-muted">Short, sharp reads on where talent demand is heading — written for hiring managers, not marketers.</p>
+            <div className="grid gap-6">
+              <article className="rounded-3xl border border-white/5 bg-white/[0.01] backdrop-blur-md p-8 hover:border-gold-500/20 transition-all duration-300">
+                <p className="eyebrow">Insights</p>
+                <h3 className="mt-3 text-xl font-extrabold text-white">Market briefings</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-400">Short, sharp reads on where talent demand is heading — written for hiring managers, not marketers.</p>
               </article>
-              <article className="rounded-3xl border border-slate-200 bg-white p-7 shadow-card">
-                <p className="eyebrow">Talent maps</p><h3 className="mt-3 text-xl font-extrabold text-ink">Know before you hire</h3>
-                <p className="mt-2 text-sm leading-6 text-muted">Planning a project team? We'll map the market for your region and discipline before you commit budget.</p>
+              <article className="rounded-3xl border border-white/5 bg-white/[0.01] backdrop-blur-md p-8 hover:border-gold-500/20 transition-all duration-300">
+                <p className="eyebrow">Talent maps</p>
+                <h3 className="mt-3 text-xl font-extrabold text-white">Know before you hire</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-400">Planning a project team? We'll map the market for your region and discipline before you commit budget.</p>
               </article>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-white py-20 sm:py-24">
+      <section className="bg-space-900 border-b border-white/5 py-20 sm:py-24">
         <div className="page-shell grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
             <p className="eyebrow">How we work</p>
-            <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">You get a person, not a portal.</h2>
-            <p className="mt-5 leading-7 text-muted">The consultant who takes your call knows the difference between a Level 3 and Level 5 commissioning engineer — because pretending otherwise is how bad hires happen.</p>
-            <p className="mt-4 leading-7 text-muted">One point of contact. Straight answers. Feedback within days, not weeks. And a relationship that outlasts the placement.</p>
+            <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">You get a person, not a portal.</h2>
+            <p className="mt-5 leading-7 text-slate-350">The consultant who takes your call knows the difference between a Level 3 and Level 5 commissioning engineer — because pretending otherwise is how bad hires happen.</p>
+            <p className="mt-4 leading-7 text-slate-350">One point of contact. Straight answers. Feedback within days, not weeks. And a relationship that outlasts the placement.</p>
           </div>
-          <blockquote className="relative rounded-3xl border border-brand-100 bg-brand-50 p-8 text-xl font-bold leading-relaxed text-ink shadow-card sm:p-10">
-            <span className="absolute left-6 top-1 text-7xl leading-none text-brand-200">“</span>
+          <blockquote className="relative rounded-3xl border border-gold-500/20 bg-gold-500/5 p-8 text-xl font-bold leading-relaxed text-white shadow-2xl sm:p-10">
+            <span className="absolute left-6 top-1 text-7xl leading-none text-gold-500/10">“</span>
             <p className="relative pt-5">With the right consultant it's not about the margins — it's about the relationship. That's the bar we hold ourselves to on every brief.</p>
-            <footer className="mt-6 text-sm font-semibold text-brand-700">The TechStax standard</footer>
+            <footer className="mt-6 text-sm font-semibold text-gold-400">The TechStax standard</footer>
           </blockquote>
         </div>
       </section>
 
-      <section className="bg-white pb-20 sm:pb-24">
+      <section className="bg-space-950 py-20 sm:py-24 border-b border-white/5">
         <div className="page-shell">
-          <div className="grid items-center gap-10 overflow-hidden rounded-4xl bg-ink p-8 text-white shadow-float sm:p-12 lg:grid-cols-2 lg:p-16">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-300">Candidates</p>
-              <h2 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Sixty seconds now. The right call later.</h2>
-              <p className="mt-5 max-w-xl leading-7 text-slate-300">Drop your CV once and you're on the radar of every TechStax consultant. When a role genuinely fits, you hear from us — not a mail-merge.</p>
-              <Link to="/drop-resume" className="btn-primary mt-7 px-6 py-3.5">Upload your CV <ArrowRight size={16} /></Link>
+          <div className="relative overflow-hidden rounded-4xl bg-gradient-to-r from-space-900 to-space-800 border border-white/10 p-8 text-white shadow-2xl sm:p-12 lg:grid-cols-2 lg:p-16">
+            <div className="absolute right-0 top-0 size-[300px] rounded-full bg-gold-500/5 blur-3xl pointer-events-none" />
+            <div className="absolute left-0 bottom-0 size-[300px] rounded-full bg-indigo-500/5 blur-3xl pointer-events-none" />
+            
+            <div className="grid items-center gap-10 lg:grid-cols-2 relative z-10">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-gold-400">Candidates</p>
+                <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Sixty seconds now. The right call later.</h2>
+                <p className="mt-5 max-w-xl leading-7 text-slate-300">Drop your CV once and you're on the radar of every TechStax consultant. When a role genuinely fits, you hear from us — not a mail-merge.</p>
+                <Link to="/drop-resume" className="btn-primary mt-8 px-7 py-3.5 inline-flex">Upload your CV <ArrowRight size={16} /></Link>
+              </div>
+              <Link to="/drop-resume" className="group rounded-3xl border-2 border-dashed border-gold-500/30 bg-gold-500/5 p-10 text-center transition-all duration-350 hover:scale-[1.01] hover:bg-gold-500/10 hover:border-gold-500/60 hover:shadow-[0_0_25px_rgba(229,193,88,0.15)]">
+                <UploadCloud className="mx-auto size-12 text-gold-400 transition-transform duration-300 group-hover:-translate-y-1.5" />
+                <strong className="mt-5 block text-lg text-white">Drag & drop your resume</strong>
+                <span className="mt-2 block text-sm text-slate-400">PDF or DOCX · up to 5MB · private & secure</span>
+              </Link>
             </div>
-            <Link to="/drop-resume" className="group rounded-3xl border-2 border-dashed border-brand-500 bg-brand-500/10 p-10 text-center transition hover:scale-[1.01] hover:bg-brand-500/15">
-              <UploadCloud className="mx-auto size-12 text-blue-300 transition group-hover:-translate-y-1" />
-              <strong className="mt-5 block text-lg">Drag & drop your resume</strong>
-              <span className="mt-2 block text-sm text-slate-400">PDF or DOCX · up to 5MB · private & secure</span>
-            </Link>
           </div>
         </div>
       </section>
 
-      <section className="border-t border-slate-200 bg-surface py-20 text-center sm:py-24">
+      <section className="bg-space-950 py-20 text-center sm:py-24">
         <div className="page-shell">
-          <FileText className="mx-auto size-10 text-brand-600" />
-          <h2 className="mt-5 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl">
-            Hiring? Looking?<span className="mt-1 block text-brand-600">Either way — talk to us.</span>
+          <FileText className="mx-auto size-12 text-gold-500 filter drop-shadow-[0_0_8px_rgba(229,193,88,0.2)]" />
+          <h2 className="mt-6 text-3xl font-extrabold tracking-tight text-white sm:text-5xl leading-tight">
+            Hiring? Looking?<span className="mt-2 block text-gradient-gold">Either way — talk to us.</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-muted">The build-out won't wait, and neither will the good people. Start the conversation today.</p>
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-300">The build-out won't wait, and neither will the good people. Start the conversation today.</p>
           <a
             href="https://mail.google.com/mail/?view=cm&fs=1&to=mayank%40infocusgroup.au&su=TechStax%20enquiry"
             target="_blank"
             rel="noreferrer"
-            className="btn-primary mt-8 px-7 py-3.5"
+            className="btn-primary mt-10 px-8 py-4 text-base"
           >
-            Start a conversation <ArrowRight size={16} />
+            Start a conversation <ArrowRight size={18} />
           </a>
         </div>
       </section>
