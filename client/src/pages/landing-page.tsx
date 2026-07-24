@@ -29,8 +29,8 @@ export function LandingPage() {
       {/* Interactive Skyline Background */}
       <div className="absolute inset-0 z-0 select-none pointer-events-none">
         <img 
-          src="/skyline.jpg" 
-          alt="City Skyline Background" 
+          src="/sydney-hero.jpg"
+          alt="Sydney Harbour skyline"
           style={{
             transformOrigin: `${mousePos.x}% ${mousePos.y}%`,
             transform: isHovered ? 'scale(1.03)' : 'scale(1)',
