@@ -8,17 +8,8 @@ interface NotionCandidateParams {
   cvUrl: string;
 }
 
-export async function addCandidateToNotion(params: NotionCandidateParams): Promise<void> {
+export async function addCandidateToNotion(params: NotionCandidateParams): Promise<string> {
   const { name, email, phone, expectedDailyRate, cvUrl } = params;
-
-  // Check if Notion variables are configured
-  if (!env.NOTION_API_KEY || !env.NOTION_DATABASE_ID) {
-    console.warn(
-      "⚠️ Notion configuration is incomplete. Candidate submission received but Notion not populated:",
-      { name, email, phone, expectedDailyRate, cvUrl }
-    );
-    return;
-  }
 
   const url = "https://api.notion.com/v1/pages";
 
@@ -52,7 +43,15 @@ export async function addCandidateToNotion(params: NotionCandidateParams): Promi
 
   if (cvUrl) {
     properties["CV File"] = {
-      url: cvUrl,
+      files: [
+        {
+          name: name.replace(/\s+/g, "_") + "_CV.pdf",
+          type: "external",
+          external: {
+            url: cvUrl
+          }
+        }
+      ]
     };
   }
 
@@ -71,7 +70,7 @@ export async function addCandidateToNotion(params: NotionCandidateParams): Promi
     }),
   });
 
-  const responseData = await response.json().catch(() => null);
+  const responseData = (await response.json().catch(() => null)) as any;
 
   if (!response.ok) {
     console.error("❌ Notion API insertion failed:", responseData);
@@ -79,4 +78,5 @@ export async function addCandidateToNotion(params: NotionCandidateParams): Promi
   }
 
   console.log(`✅ Candidate ${name} successfully populated in Notion database`);
+  return responseData?.id || "";
 }

@@ -1,6 +1,5 @@
 import type { Request, Response } from "express";
 import { z } from "zod";
-import { CandidateSubmission } from "../models/CandidateSubmission.js";
 import { sendCandidateEmail } from "../services/email.service.js";
 import { addCandidateToNotion } from "../services/notion.service.js";
 import { ApiError } from "../utils/api-error.js";
@@ -36,17 +35,7 @@ export const submitCv = asyncHandler(async (request: Request, response: Response
   const cvFileUrl = "/uploads/resumes/" + file.filename;
   const cvFileName = file.originalname;
 
-  // 1. Save locally to MongoDB
-  const submission = await CandidateSubmission.create({
-    name,
-    email,
-    phone,
-    expectedDailyRate,
-    cvFileUrl,
-    cvFileName
-  });
-
-  // 2. Route to Email Inbox (Nodemailer)
+  // 1. Route to Email Inbox (Nodemailer)
   try {
     await sendCandidateEmail({
       name,
@@ -60,24 +49,20 @@ export const submitCv = asyncHandler(async (request: Request, response: Response
     console.error("❌ Failed to send candidate email:", emailError);
   }
 
-  // 3. Populate Notion candidate database
-  try {
-    const backendBaseUrl = `${request.protocol}://${request.get("host")}`;
-    const absoluteCvUrl = backendBaseUrl + cvFileUrl;
+  // 2. Populate Notion candidate database
+  const backendBaseUrl = `${request.protocol}://${request.get("host")}`;
+  const absoluteCvUrl = backendBaseUrl + cvFileUrl;
 
-    await addCandidateToNotion({
-      name,
-      email,
-      phone,
-      expectedDailyRate,
-      cvUrl: absoluteCvUrl
-    });
-  } catch (notionError) {
-    console.error("❌ Failed to populate Notion database:", notionError);
-  }
+  const notionPageId = await addCandidateToNotion({
+    name,
+    email,
+    phone,
+    expectedDailyRate,
+    cvUrl: absoluteCvUrl
+  });
 
   return sendSuccess(response, {
     message: "Thank you! Your interest and CV have been successfully registered.",
-    id: submission._id.toString()
+    id: notionPageId
   }, 201);
 });
