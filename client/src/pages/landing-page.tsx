@@ -5,8 +5,6 @@ import {
   BarChart3,
   CheckCircle2,
   FileText,
-  Sparkles,
-  UploadCloud,
   Users
 } from "lucide-react";
 
@@ -90,7 +88,7 @@ export function LandingPage() {
           />
 
           {/* Custom radial glow tracking mouse position */}
-          <div 
+          <div
             className="absolute inset-0 transition-opacity duration-500 opacity-60 pointer-events-none md:opacity-40"
             style={{
               background: `radial-gradient(circle 450px at ${mousePos.x}% ${mousePos.y}%, rgba(99, 102, 241, 0.15), transparent 80%), 
@@ -104,14 +102,10 @@ export function LandingPage() {
 
         <div className="page-shell relative z-10 py-20 lg:py-28 animate-float-left">
           <div className="max-w-3xl">
-            <div className="inline-flex w-fit items-center gap-2.5 rounded-full border border-gold-500/30 bg-gold-500/10 px-4 py-2 text-xs font-bold text-gold-400 shadow-[0_0_15px_rgba(229,193,88,0.1)]">
-              <Sparkles size={14} className="animate-pulse" />
-              AI Data Centre & Digital Infrastructure Recruitment · Australia
-            </div>
             <h1 className="mt-8 text-4xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-7xl">
-              The build-out is here.
-              <span className="mt-2 block text-black font-black tracking-wide" style={{ textShadow: "0 0 10px rgba(255, 255, 255, 0.95), 0 0 20px rgba(229, 193, 88, 0.8)" }}>Someone has to build it.</span>
-              <span className="mt-2 block text-gradient-gold filter drop-shadow-[0_0_15px_rgba(229,193,88,0.2)]">We find that someone.</span>
+              <span className="text-[#F8FAFC] block" style={{ textShadow: "0 2px 8px rgba(0,0,0,0.2)" }}>The build-out is here.</span>
+              <span className="mt-2 block text-[#FFFFFF]" style={{ textShadow: "0 2px 8px rgba(0,0,0,0.2)" }}>Someone has to build it.</span>
+              <span className="mt-2 block text-[#F4B942]" style={{ textShadow: "0 2px 8px rgba(0,0,0,0.2)" }}>We find that someone.</span>
             </h1>
             <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
               TechStax recruits the engineers, builders and operators behind Australia's AI infrastructure — one critical hire or an entire delivery team.
@@ -146,23 +140,23 @@ export function LandingPage() {
         </div>
       </section>
 
-      <section id="expertise" className="bg-space-950 border-b border-white/5 py-20 sm:py-24">
+      <section id="expertise" className="bg-gold-50 border-y border-slate-200 py-20 sm:py-24">
         <div className="page-shell">
           <div className="max-w-2xl">
             <p className="eyebrow">Expertise</p>
-            <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">The whole facility. One partner.</h2>
-            <p className="mt-4 text-lg leading-8 text-slate-400">From the first shovel to 24/7 operations — six practices that cover everything a data centre needs to exist.</p>
+            <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">The whole facility. One partner.</h2>
+            <p className="mt-4 text-lg leading-8 text-slate-600">From the first shovel to 24/7 operations — six practices that cover everything a data centre needs to exist.</p>
           </div>
-          <div className="mt-12 overflow-hidden rounded-3xl border border-white/5 bg-white/[0.01] backdrop-blur-md shadow-2xl">
+          <div className="mt-12 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-card">
             {expertise.map(([title, description], index) => (
-              <div 
-                key={title} 
-                className="group grid gap-3 border-b border-white/5 px-6 py-6 transition-all duration-300 hover:bg-white/[0.03] hover:border-gold-500/20 md:grid-cols-[56px_1.1fr_1.4fr_28px] md:items-center md:gap-6"
+              <div
+                key={title}
+                className="group grid gap-3 border-b border-slate-150/80 last:border-b-0 px-6 py-6 transition-all duration-300 hover:bg-gold-50/40 md:grid-cols-[56px_1.1fr_1.4fr_28px] md:items-center md:gap-6"
               >
-                <span className="text-xs font-extrabold tracking-[0.14em] text-accent filter drop-shadow-[0_0_8px_rgba(56,189,248,0.2)]">{String(index + 1).padStart(2, "0")}</span>
-                <h3 className="text-lg font-extrabold text-white transition group-hover:text-gold-400 sm:text-xl">{title}</h3>
-                <p className="text-sm leading-6 text-slate-350">{description}</p>
-                <ArrowRight className="hidden text-slate-500 transition-all duration-300 group-hover:translate-x-1.5 group-hover:text-gold-500 md:block" size={20} />
+                <span className="text-xs font-extrabold tracking-[0.14em] text-brand-600">{String(index + 1).padStart(2, "0")}</span>
+                <h3 className="text-lg font-extrabold text-ink transition group-hover:text-brand-600 sm:text-xl">{title}</h3>
+                <p className="text-sm leading-6 text-slate-500">{description}</p>
+                <ArrowRight className="hidden text-slate-400 transition-all duration-300 group-hover:translate-x-1.5 group-hover:text-brand-600 md:block" size={20} />
               </div>
             ))}
           </div>
@@ -177,8 +171,8 @@ export function LandingPage() {
             {differentiators.map((item, index) => {
               const Icon = item.icon;
               return (
-                <article 
-                  key={item.title} 
+                <article
+                  key={item.title}
                   className="rounded-3xl border border-white/5 bg-white/[0.01] backdrop-blur-md p-8 transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/[0.03] hover:border-gold-500/30 hover:shadow-[0_0_30px_rgba(229,193,88,0.15)]"
                 >
                   <div className="flex items-center justify-between">
@@ -196,13 +190,13 @@ export function LandingPage() {
         </div>
       </section>
 
-      <section id="insights" className="bg-space-950 border-b border-white/5 py-20 sm:py-24">
+      <section id="insights" className="bg-gold-50 border-y border-slate-200 py-20 sm:py-24">
         <div className="page-shell">
           <p className="eyebrow">Intelligence</p>
-          <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">We trade in market truth.</h2>
-          <p className="mt-4 text-lg text-slate-450">The best firms in this sector publish what they know. So do we.</p>
+          <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">We trade in market truth.</h2>
+          <p className="mt-4 text-lg text-slate-600">The best firms in this sector publish what they know. So do we.</p>
           <div className="mt-12 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-            <article className="relative flex min-h-80 flex-col justify-end overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-space-900 to-space-950 p-8 text-white sm:p-10 shadow-float group hover:border-gold-500/30 transition-all duration-500">
+            <article className="relative flex min-h-80 flex-col justify-end overflow-hidden rounded-3xl border border-slate-200/50 bg-gradient-to-br from-space-900 to-space-950 p-8 text-white sm:p-10 shadow-float group hover:border-gold-500/30 transition-all duration-500">
               <span className="absolute -right-4 -top-10 text-[9rem] font-black leading-none text-gold-500/5 select-none transition group-hover:text-gold-500/10 duration-500">2026</span>
               <div className="absolute top-8 right-8 size-20 rounded-full bg-gold-500/5 blur-2xl pointer-events-none group-hover:bg-gold-500/15 duration-500" />
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-gold-400">Flagship report</p>
@@ -220,15 +214,15 @@ export function LandingPage() {
               </div>
             </article>
             <div className="grid gap-6">
-              <article className="rounded-3xl border border-white/5 bg-white/[0.01] backdrop-blur-md p-8 hover:border-gold-500/20 transition-all duration-300">
+              <article className="rounded-3xl border border-slate-200 bg-white p-8 hover:border-gold-500/30 transition-all duration-300 shadow-card">
                 <p className="eyebrow">Insights</p>
-                <h3 className="mt-3 text-xl font-extrabold text-white">Market briefings</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-400">Short, sharp reads on where talent demand is heading — written for hiring managers, not marketers.</p>
+                <h3 className="mt-3 text-xl font-extrabold text-ink">Market briefings</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-500">Short, sharp reads on where talent demand is heading — written for hiring managers, not marketers.</p>
               </article>
-              <article className="rounded-3xl border border-white/5 bg-white/[0.01] backdrop-blur-md p-8 hover:border-gold-500/20 transition-all duration-300">
+              <article className="rounded-3xl border border-slate-200 bg-white p-8 hover:border-gold-500/30 transition-all duration-300 shadow-card">
                 <p className="eyebrow">Talent maps</p>
-                <h3 className="mt-3 text-xl font-extrabold text-white">Know before you hire</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-400">Planning a project team? We'll map the market for your region and discipline before you commit budget.</p>
+                <h3 className="mt-3 text-xl font-extrabold text-ink">Know before you hire</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-500">Planning a project team? We'll map the market for your region and discipline before you commit budget.</p>
               </article>
             </div>
           </div>
@@ -251,24 +245,17 @@ export function LandingPage() {
         </div>
       </section>
 
-      <section className="bg-space-950 py-20 sm:py-24 border-b border-white/5">
+      <section className="bg-gold-50 py-20 sm:py-24 border-b border-slate-200">
         <div className="page-shell">
-          <div className="relative overflow-hidden rounded-4xl bg-gradient-to-r from-space-900 to-space-800 border border-white/10 p-8 text-white shadow-2xl sm:p-12 lg:grid-cols-2 lg:p-16">
+          <div className="relative overflow-hidden rounded-4xl bg-white border border-slate-200 p-8 shadow-card sm:p-12 lg:p-16">
             <div className="absolute right-0 top-0 size-[300px] rounded-full bg-gold-500/5 blur-3xl pointer-events-none" />
             <div className="absolute left-0 bottom-0 size-[300px] rounded-full bg-indigo-500/5 blur-3xl pointer-events-none" />
-            
-            <div className="grid items-center gap-10 lg:grid-cols-2 relative z-10">
-              <div>
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-gold-400">Candidates</p>
-                <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Sixty seconds now. The right call later.</h2>
-                <p className="mt-5 max-w-xl leading-7 text-slate-300">Drop your CV once and you're on the radar of every TechStax consultant. When a role genuinely fits, you hear from us — not a mail-merge.</p>
-                <Link to="/drop-resume" className="btn-primary mt-8 px-7 py-3.5 inline-flex">Upload your CV <ArrowRight size={16} /></Link>
-              </div>
-              <Link to="/drop-resume" className="group rounded-3xl border-2 border-dashed border-gold-500/30 bg-gold-500/5 p-10 text-center transition-all duration-350 hover:scale-[1.01] hover:bg-gold-500/10 hover:border-gold-500/60 hover:shadow-[0_0_25px_rgba(229,193,88,0.15)]">
-                <UploadCloud className="mx-auto size-12 text-gold-400 transition-transform duration-300 group-hover:-translate-y-1.5" />
-                <strong className="mt-5 block text-lg text-white">Drag & drop your resume</strong>
-                <span className="mt-2 block text-sm text-slate-400">PDF or DOCX · up to 5MB · private & secure</span>
-              </Link>
+
+            <div className="relative z-10 max-w-2xl">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-gold-600">Candidates</p>
+              <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">Sixty seconds now. The right call later.</h2>
+              <p className="mt-5 leading-7 text-slate-600">Drop your CV once and you're on the radar of every TechStax consultant. When a role genuinely fits, you hear from us — not a mail-merge.</p>
+              <Link to="/drop-resume" className="btn-primary mt-8 px-7 py-3.5 inline-flex">Upload your CV <ArrowRight size={16} /></Link>
             </div>
           </div>
         </div>

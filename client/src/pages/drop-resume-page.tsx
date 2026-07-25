@@ -17,6 +17,18 @@ import { api, ApiError } from "../lib/api";
 export function DropResumePage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   
+  // Mouse position states for background spotlight
+  const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    setMousePos({
+      x: ((event.clientX - rect.left) / rect.width) * 100,
+      y: ((event.clientY - rect.top) / rect.height) * 100
+    });
+  };
+
   // Form State
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -126,13 +138,34 @@ export function DropResumePage() {
   };
 
   return (
-    <div className="relative min-h-[calc(100vh-140px)] bg-space-950 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      {/* Background Skyline Accent */}
-      <div className="absolute inset-0 z-0 select-none pointer-events-none opacity-[0.03] mix-blend-luminosity">
+    <div 
+      className="relative min-h-[calc(100vh-140px)] bg-space-950 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => {
+        setIsHovered(false);
+        setMousePos({ x: 50, y: 50 });
+      }}
+    >
+      {/* Background Skyline Accent with Spotlight effect */}
+      <div className="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden">
+        {/* Base background image - slightly visible */}
         <img 
           src="/skyline.jpg" 
           alt="" 
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover mix-blend-luminosity filter brightness-[0.8] contrast-125 opacity-[0.05] absolute inset-0"
+        />
+        {/* Spotlight image layer - brightens around mouse */}
+        <img 
+          src="/skyline.jpg" 
+          alt="" 
+          style={{
+            transition: "opacity 0.4s ease-out",
+            opacity: isHovered ? 0.35 : 0,
+            WebkitMaskImage: `radial-gradient(circle 280px at ${mousePos.x}% ${mousePos.y}%, black 20%, transparent 100%)`,
+            maskImage: `radial-gradient(circle 280px at ${mousePos.x}% ${mousePos.y}%, black 20%, transparent 100%)`
+          }}
+          className="absolute inset-0 h-full w-full object-cover mix-blend-luminosity filter brightness-[0.95] contrast-125"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-space-950 via-transparent to-space-950" />
       </div>
