@@ -264,7 +264,7 @@ export function LandingPage() {
       <section className="bg-space-950 py-20 text-center sm:py-24">
         <div className="page-shell">
           <FileText className="mx-auto size-12 text-gold-500 filter drop-shadow-[0_0_8px_rgba(229,193,88,0.2)]" />
-          <h2 className="mt-6 text-3xl font-extrabold tracking-tight text-white sm:text-5xl leading-tight">
+          <h2 className="mx-auto mt-6 max-w-5xl px-1 pb-2 text-3xl font-extrabold leading-[1.12] tracking-tight text-white sm:text-4xl lg:text-5xl">
             Hiring? Looking?<span className="mt-2 block text-gradient-gold">Either way — talk to us.</span>
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-300">The build-out won't wait, and neither will the good people. Start the conversation today.</p>

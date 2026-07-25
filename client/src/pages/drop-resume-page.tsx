@@ -182,8 +182,6 @@ export function DropResumePage() {
         <div className="panel p-6 sm:p-8 bg-white/[0.01] border border-white/10 backdrop-blur-md shadow-float rounded-3xl relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-gold-500 via-brand-500 to-accent" />
           <h1 className="text-3xl font-extrabold text-white tracking-tight">Submit your CV</h1>
-          <p className="mt-2 text-sm text-slate-400">Upload your CV to join our private Notion candidate database.</p>
-
           {status?.type === "success" ? (
             <div className="mt-6 p-6 bg-emerald-950/20 rounded-2xl border border-emerald-500/20 text-center">
               <CheckCircle2 className="size-12 text-emerald-400 mx-auto" />
