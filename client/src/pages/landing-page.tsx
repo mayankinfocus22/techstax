@@ -104,7 +104,7 @@ export function LandingPage() {
           <div className="max-w-3xl">
             <h1 className="mt-8 text-4xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-7xl">
               <span className="text-[#F8FAFC] block" style={{ textShadow: "0 2px 8px rgba(0,0,0,0.2)" }}>The build-out is here.</span>
-              <span className="mt-2 block text-[#FFFFFF]" style={{ textShadow: "0 2px 8px rgba(0,0,0,0.2)" }}>Someone has to build it.</span>
+              <span className="mt-2 block text-[#D7E6F7]" style={{ textShadow: "0 2px 8px rgba(0,0,0,0.2)" }}>Someone has to build it.</span>
               <span className="mt-2 block text-[#F4B942]" style={{ textShadow: "0 2px 8px rgba(0,0,0,0.2)" }}>We find that someone.</span>
             </h1>
             <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
@@ -115,7 +115,7 @@ export function LandingPage() {
                 Drop your CV <ArrowRight size={18} />
               </Link>
               <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=mayank%40infocusgroup.au&su=TechStax%20Employer%20Enquiry"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=sparshpoddar9%40gmail.com&su=TechStax%20Employer%20Enquiry"
                 target="_blank"
                 rel="noreferrer"
                 className="btn-secondary px-7 py-4 text-base"
@@ -197,14 +197,13 @@ export function LandingPage() {
           <p className="mt-4 text-lg text-slate-600">The best firms in this sector publish what they know. So do we.</p>
           <div className="mt-12 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
             <article className="relative flex min-h-80 flex-col justify-end overflow-hidden rounded-3xl border border-slate-200/50 bg-gradient-to-br from-space-900 to-space-950 p-8 text-white sm:p-10 shadow-float group hover:border-gold-500/30 transition-all duration-500">
-              <span className="absolute -right-4 -top-10 text-[9rem] font-black leading-none text-gold-500/5 select-none transition group-hover:text-gold-500/10 duration-500">2026</span>
               <div className="absolute top-8 right-8 size-20 rounded-full bg-gold-500/5 blur-2xl pointer-events-none group-hover:bg-gold-500/15 duration-500" />
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-gold-400">Flagship report</p>
               <h3 className="mt-3 text-3xl font-extrabold text-white">The Australian Data Centre Salary Guide</h3>
               <p className="mt-4 max-w-xl text-sm leading-6 text-slate-400">Salaries, day rates and demand signals across every discipline in the build-out — from HV trades to AI platform teams.</p>
               <div className="mt-8">
                 <a
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=mayank%40infocusgroup.au&su=Salary%20Guide%20Early%20Access"
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=sparshpoddar9%40gmail.com&su=Salary%20Guide%20Early%20Access"
                   target="_blank"
                   rel="noreferrer"
                   className="btn-primary"
@@ -269,7 +268,7 @@ export function LandingPage() {
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-300">The build-out won't wait, and neither will the good people. Start the conversation today.</p>
           <a
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=mayank%40infocusgroup.au&su=TechStax%20enquiry"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=sparshpoddar9%40gmail.com&su=TechStax%20enquiry"
             target="_blank"
             rel="noreferrer"
             className="btn-primary mt-10 px-8 py-4 text-base"

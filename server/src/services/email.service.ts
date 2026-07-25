@@ -41,12 +41,13 @@ export async function sendCandidateEmail(params: SendEmailParams): Promise<void>
   const mailOptions = {
     from: env.SMTP_FROM || `"TechStax CV Drop" <noreply@techstax.dev>`,
     to: env.SMTP_TO,
-    subject: `New Candidate CV Drop: ${name}`,
-    text: `A new candidate has registered interest on TechStax.\n\nName: ${name}\nEmail: ${email}\nPhone: ${phoneText}\nExpected Daily Rate: ${rateText}\nCV File: ${cvFileName}`,
+    subject: `Latest resume has been dropped: ${name}`,
+    text: `Hi,\n\nA new resume has been dropped by ${name}.\n\nCandidate details:\nName: ${name}\nEmail: ${email}\nPhone: ${phoneText}\nExpected Daily Rate: ${rateText}\nCV File: ${cvFileName}`,
     html: `
       <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e7eaf1; rounded: 12px;">
-        <h2 style="color: #1e40af; border-bottom: 2px solid #edf5ff; padding-bottom: 10px; margin-top: 0;">New Candidate Interest</h2>
-        <p>A new candidate has registered interest and uploaded their CV.</p>
+        <h2 style="color: #1e40af; border-bottom: 2px solid #edf5ff; padding-bottom: 10px; margin-top: 0;">Resume Dropped</h2>
+        <p>Hi,</p>
+        <p>A new resume has been dropped by <strong>${name}</strong>.</p>
         <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
           <tr>
             <td style="padding: 8px 0; font-weight: bold; width: 180px; color: #65708a;">Full Name:</td>
@@ -70,7 +71,7 @@ export async function sendCandidateEmail(params: SendEmailParams): Promise<void>
           </tr>
         </table>
         <p style="color: #65708a; font-size: 12px; border-top: 1px solid #e7eaf1; padding-top: 15px; margin-bottom: 0;">
-          This submission is attached to this email and saved in the MongoDB database.
+          This submission is attached to this email and has been uploaded directly to OneDrive.
         </p>
       </div>
     `,

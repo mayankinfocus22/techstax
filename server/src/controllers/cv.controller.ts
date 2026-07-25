@@ -1,7 +1,8 @@
 import type { Request, Response } from "express";
 import { z } from "zod";
+import fs from "node:fs/promises";
 import { sendCandidateEmail } from "../services/email.service.js";
-import { addCandidateToNotion } from "../services/notion.service.js";
+import { uploadFileToOneDrive } from "../services/onedrive.service.js";
 import { ApiError } from "../utils/api-error.js";
 import { asyncHandler } from "../utils/async-handler.js";
 import { sendSuccess } from "../utils/response.js";
@@ -28,11 +29,15 @@ export const submitCv = asyncHandler(async (request: Request, response: Response
   // Validate fields
   const validationResult = submitCvSchema.safeParse(request.body);
   if (!validationResult.success) {
+    try {
+      await fs.unlink(file.path);
+    } catch (cleanupErr) {
+      console.error("❌ Failed to clean up file after validation error:", cleanupErr);
+    }
     throw new ApiError(400, validationResult.error.errors[0].message);
   }
 
   const { name, email, phone, expectedDailyRate } = validationResult.data;
-  const cvFileUrl = "/uploads/resumes/" + file.filename;
   const cvFileName = file.originalname;
 
   // 1. Route to Email Inbox (Nodemailer)
@@ -49,20 +54,21 @@ export const submitCv = asyncHandler(async (request: Request, response: Response
     console.error("❌ Failed to send candidate email:", emailError);
   }
 
-  // 2. Populate Notion candidate database
-  const backendBaseUrl = `${request.protocol}://${request.get("host")}`;
-  const absoluteCvUrl = backendBaseUrl + cvFileUrl;
-
-  const notionPageId = await addCandidateToNotion({
-    name,
-    email,
-    phone,
-    expectedDailyRate,
-    cvUrl: absoluteCvUrl
-  });
+  // 2. Populate OneDrive candidate database and cleanup local file
+  let oneDriveResult;
+  try {
+    const fileBuffer = await fs.readFile(file.path);
+    oneDriveResult = await uploadFileToOneDrive(fileBuffer, file.originalname);
+  } finally {
+    try {
+      await fs.unlink(file.path);
+    } catch (cleanupError) {
+      console.error("❌ Failed to clean up local temporary file:", cleanupError);
+    }
+  }
 
   return sendSuccess(response, {
     message: "Thank you! Your interest and CV have been successfully registered.",
-    id: notionPageId
+    id: oneDriveResult?.id || "unknown"
   }, 201);
 });

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,7 +8,7 @@
   html {
     background: #050814;
     color: #f8fafc;
-    font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+    font-family: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
     scroll-behavior: smooth;
   }
 
@@ -30,6 +30,12 @@
   select,
   textarea {
     font: inherit;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
   }
 }
 
@@ -67,7 +73,8 @@
   }
 
   .eyebrow {
-    @apply text-xs font-bold uppercase tracking-[0.18em] text-gold-500 filter drop-shadow-[0_0_8px_rgba(229,193,88,0.2)];
+    @apply text-xs font-medium uppercase tracking-[0.18em] text-gold-500 filter drop-shadow-[0_0_8px_rgba(229,193,88,0.2)];
+    font-family: "JetBrains Mono", ui-monospace, monospace;
   }
 
   /* Custom Glow/Shiny Utilities */

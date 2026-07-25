@@ -23,11 +23,14 @@ const allowedMimeTypes = new Set([
   "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
 ]);
 
+const allowedExtensions = new Set([".pdf", ".docx"]);
+
 export const resumeUpload = multer({
   storage,
   limits: { fileSize: env.MAX_UPLOAD_BYTES },
   fileFilter: (_request, file, callback) => {
-    if (!allowedMimeTypes.has(file.mimetype)) {
+    const ext = path.extname(file.originalname).toLowerCase();
+    if (!allowedMimeTypes.has(file.mimetype) || !allowedExtensions.has(ext)) {
       callback(new ApiError(415, "Only PDF and DOCX resumes are supported"));
       return;
     }

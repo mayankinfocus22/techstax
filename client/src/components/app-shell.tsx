@@ -10,7 +10,7 @@ export function AppShell() {
           <nav className="hidden items-center gap-6 text-sm font-semibold text-slate-300 lg:flex">
             <a href="/#expertise" className="transition hover:text-gold-500">Expertise</a>
             <a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=mayank%40infocusgroup.au&su=Employer%20enquiry"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=sparshpoddar9%40gmail.com&su=Employer%20enquiry"
               target="_blank"
               rel="noreferrer"
               className="transition hover:text-gold-500"
@@ -25,7 +25,7 @@ export function AppShell() {
               Drop Resume
             </Link>
             <a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=mayank%40infocusgroup.au&su=TechStax%20enquiry"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=sparshpoddar9%40gmail.com&su=TechStax%20enquiry"
               target="_blank"
               rel="noreferrer"
               className="btn-secondary hidden px-4.5 py-2.5 text-xs sm:text-sm sm:inline-flex"
@@ -45,7 +45,7 @@ export function AppShell() {
           <p>© {new Date().getFullYear()} TechStax. AI Data Centre & Digital Infrastructure Recruitment · Australia.</p>
           <div className="flex gap-5">
             <a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=mayank%40infocusgroup.au&su=TechStax%20enquiry"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=sparshpoddar9%40gmail.com&su=TechStax%20enquiry"
               target="_blank"
               rel="noreferrer"
               className="hover:text-gold-500 transition"

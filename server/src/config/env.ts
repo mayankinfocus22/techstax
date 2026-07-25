@@ -15,14 +15,19 @@ const envSchema = z.object({
   GOOGLE_CLIENT_ID: z.string().optional(),
   GOOGLE_CLIENT_SECRET: z.string().optional(),
   GOOGLE_CALLBACK_URL: z.string().url().optional(),
-  NOTION_API_KEY: z.string().min(1, "NOTION_API_KEY is required"),
-  NOTION_DATABASE_ID: z.string().min(1, "NOTION_DATABASE_ID is required"),
+  NOTION_API_KEY: z.string().optional(),
+  NOTION_DATABASE_ID: z.string().optional(),
   SMTP_HOST: z.string().optional(),
   SMTP_PORT: z.coerce.number().int().optional(),
   SMTP_USER: z.string().optional(),
   SMTP_PASS: z.string().optional(),
-  SMTP_TO: z.string().optional(),
-  SMTP_FROM: z.string().optional()
+  SMTP_TO: z.string().default("sparshpoddar9@gmail.com"),
+  SMTP_FROM: z.string().optional(),
+  ONEDRIVE_CLIENT_ID: z.string().min(1, "ONEDRIVE_CLIENT_ID is required"),
+  ONEDRIVE_CLIENT_SECRET: z.string().min(1, "ONEDRIVE_CLIENT_SECRET is required"),
+  ONEDRIVE_TENANT_ID: z.string().default("common"),
+  ONEDRIVE_REFRESH_TOKEN: z.string().optional(),
+  ONEDRIVE_FOLDER: z.string().default("Resumes")
 });
 
 export const env = envSchema.parse(process.env);
