@@ -115,7 +115,7 @@ export function LandingPage() {
                 Drop your CV <ArrowRight size={18} />
               </Link>
               <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=sparshpoddar9%40gmail.com&su=TechStax%20Employer%20Enquiry"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=contact%40techstax.com.au&su=TechStax%20Employer%20Enquiry"
                 target="_blank"
                 rel="noreferrer"
                 className="btn-secondary px-7 py-4 text-base"
@@ -203,7 +203,7 @@ export function LandingPage() {
               <p className="mt-4 max-w-xl text-sm leading-6 text-slate-400">Salaries, day rates and demand signals across every discipline in the build-out — from HV trades to AI platform teams.</p>
               <div className="mt-8">
                 <a
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=sparshpoddar9%40gmail.com&su=Salary%20Guide%20Early%20Access"
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=contact%40techstax.com.au&su=Salary%20Guide%20Early%20Access"
                   target="_blank"
                   rel="noreferrer"
                   className="btn-primary"
@@ -268,7 +268,7 @@ export function LandingPage() {
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-300">The build-out won't wait, and neither will the good people. Start the conversation today.</p>
           <a
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=sparshpoddar9%40gmail.com&su=TechStax%20enquiry"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=contact%40techstax.com.au&su=TechStax%20enquiry"
             target="_blank"
             rel="noreferrer"
             className="btn-primary mt-10 px-8 py-4 text-base"

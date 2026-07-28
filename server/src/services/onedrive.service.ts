@@ -1,6 +1,10 @@
 import { env } from "../config/env.js";
 
-async function getAccessToken(): Promise<string> {
+export async function getAccessToken(): Promise<string> {
+  if (!env.ONEDRIVE_CLIENT_ID || !env.ONEDRIVE_CLIENT_SECRET) {
+    throw new Error("OneDrive Client ID and Secret must be configured");
+  }
+
   const tokenUrl = env.ONEDRIVE_REFRESH_TOKEN
     ? "https://login.microsoftonline.com/common/oauth2/v2.0/token"
     : `https://login.microsoftonline.com/${env.ONEDRIVE_TENANT_ID}/oauth2/v2.0/token`;
@@ -35,6 +39,10 @@ async function getAccessToken(): Promise<string> {
 }
 
 export async function uploadFileToOneDrive(fileBuffer: Buffer, fileName: string): Promise<any> {
+  if (!env.ONEDRIVE_CLIENT_ID || !env.ONEDRIVE_CLIENT_SECRET) {
+    console.warn("⚠️ OneDrive is not configured. Skipping OneDrive upload.");
+    return null;
+  }
   const accessToken = await getAccessToken();
 
   // URL-encode the folder and filename to be safe with spaces/special characters
