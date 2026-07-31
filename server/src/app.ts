@@ -16,6 +16,8 @@ app.use(cors({
     const allowed = [
       env.CLIENT_URL,
       /^https:\/\/.*\.vercel\.app$/,
+      "https://techstax.com.au",
+      "https://www.techstax.com.au",
       "http://localhost:5173",
     ];
     if (!origin) return callback(null, true);
