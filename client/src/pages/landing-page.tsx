@@ -11,8 +11,8 @@ import {
 const expertise = [
   ["Leadership & Delivery", "The directors and program leads who carry a build from business case to handover."],
   ["Design & Engineering", "The engineers who decide how a facility stands, cools, powers and survives."],
-  ["Construction & Commissioning", "The people who build it — and the people who prove it works before go-live."],
-  ["Power & Cooling", "HV, UPS, generators, chillers and BMS — the trades that keep the lights and racks on."],
+  ["Construction & Commissioning", "The people who build it - and the people who prove it works before go-live."],
+  ["Power & Cooling", "HV, UPS, generators, chillers and BMS - the trades that keep the lights and racks on."],
   ["Cloud, AI & ICT", "The platform, network and ML engineers who turn a building into compute."],
   ["Operations & Critical Environments", "The teams who own uptime, every hour, for the life of the facility."]
 ];
@@ -26,7 +26,7 @@ const differentiators = [
   {
     icon: Users,
     title: "One consultant, start to finish",
-    description: "No handoffs and no resourcers you've never met. The person who takes your brief is the person who fills it — and picks up the phone next year."
+    description: "No handoffs and no resourcers you've never met. The person who takes your brief is the person who fills it - and picks up the phone next year."
   },
   {
     icon: BarChart3,
@@ -108,7 +108,7 @@ export function LandingPage() {
               <span className="mt-2 block text-[#F4B942]" style={{ textShadow: "0 2px 8px rgba(0,0,0,0.2)" }}>We find that someone.</span>
             </h1>
             <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
-              TechStax recruits the engineers, builders and operators behind Australia's AI infrastructure — one critical hire or an entire delivery team.
+              TechStax recruits the engineers, builders and operators behind Australia's AI infrastructure - one critical hire or an entire delivery team.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <Link to="/drop-resume" className="btn-primary px-7 py-4 text-base">
@@ -133,7 +133,7 @@ export function LandingPage() {
             <p className="eyebrow">Who we are</p>
             <h2 className="mt-6 text-3xl font-extrabold leading-snug tracking-tight text-white sm:text-5xl">
               Most recruiters send CVs.{" "}
-              <span className="text-slate-400 font-medium">We've delivered the programs, run the migrations and sat in the war rooms —</span>{" "}
+              <span className="text-slate-400 font-medium">We've delivered the programs, run the migrations and sat in the war rooms -</span>{" "}
               so we screen candidates the way <span className="text-gradient-gold">your own engineers would.</span>
             </h2>
           </div>
@@ -145,7 +145,7 @@ export function LandingPage() {
           <div className="max-w-2xl">
             <p className="eyebrow">Expertise</p>
             <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">The whole facility. One partner.</h2>
-            <p className="mt-4 text-lg leading-8 text-slate-600">From the first shovel to 24/7 operations — six practices that cover everything a data centre needs to exist.</p>
+            <p className="mt-4 text-lg leading-8 text-slate-600">From the first shovel to 24/7 operations - six practices that cover everything a data centre needs to exist.</p>
           </div>
           <div className="mt-12 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-card">
             {expertise.map(([title, description], index) => (
@@ -179,7 +179,7 @@ export function LandingPage() {
                     <span className="grid size-11 place-items-center rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 text-space-950 shadow-[0_0_15px_rgba(229,193,88,0.25)]">
                       <Icon size={21} />
                     </span>
-                    <span className="text-xs font-bold tracking-[0.16em] text-gold-400">— 0{index + 1}</span>
+                    <span className="text-xs font-bold tracking-[0.16em] text-gold-400">- 0{index + 1}</span>
                   </div>
                   <h3 className="mt-8 text-xl font-extrabold leading-snug text-white">{item.title}</h3>
                   <p className="mt-4 text-sm leading-6 text-slate-400">{item.description}</p>
@@ -200,7 +200,7 @@ export function LandingPage() {
               <div className="absolute top-8 right-8 size-20 rounded-full bg-gold-500/5 blur-2xl pointer-events-none group-hover:bg-gold-500/15 duration-500" />
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-gold-400">Flagship report</p>
               <h3 className="mt-3 text-3xl font-extrabold text-white">The Australian Data Centre Salary Guide</h3>
-              <p className="mt-4 max-w-xl text-sm leading-6 text-slate-400">Salaries, day rates and demand signals across every discipline in the build-out — from HV trades to AI platform teams.</p>
+              <p className="mt-4 max-w-xl text-sm leading-6 text-slate-400">Salaries, day rates and demand signals across every discipline in the build-out - from HV trades to AI platform teams.</p>
               <div className="mt-8">
                 <a
                   href="https://mail.google.com/mail/?view=cm&fs=1&to=contact%40techstax.com.au&su=Salary%20Guide%20Early%20Access"
@@ -216,7 +216,7 @@ export function LandingPage() {
               <article className="rounded-3xl border border-slate-200 bg-white p-8 hover:border-gold-500/30 transition-all duration-300 shadow-card">
                 <p className="eyebrow">Insights</p>
                 <h3 className="mt-3 text-xl font-extrabold text-ink">Market briefings</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-500">Short, sharp reads on where talent demand is heading — written for hiring managers, not marketers.</p>
+                <p className="mt-3 text-sm leading-6 text-slate-500">Short, sharp reads on where talent demand is heading - written for hiring managers, not marketers.</p>
               </article>
               <article className="rounded-3xl border border-slate-200 bg-white p-8 hover:border-gold-500/30 transition-all duration-300 shadow-card">
                 <p className="eyebrow">Talent maps</p>
@@ -233,12 +233,12 @@ export function LandingPage() {
           <div>
             <p className="eyebrow">How we work</p>
             <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">You get a person, not a portal.</h2>
-            <p className="mt-5 leading-7 text-slate-350">The consultant who takes your call knows the difference between a Level 3 and Level 5 commissioning engineer — because pretending otherwise is how bad hires happen.</p>
+            <p className="mt-5 leading-7 text-slate-350">The consultant who takes your call knows the difference between a Level 3 and Level 5 commissioning engineer - because pretending otherwise is how bad hires happen.</p>
             <p className="mt-4 leading-7 text-slate-350">One point of contact. Straight answers. Feedback within days, not weeks. And a relationship that outlasts the placement.</p>
           </div>
           <blockquote className="relative rounded-3xl border border-gold-500/20 bg-gold-500/5 p-8 text-xl font-bold leading-relaxed text-white shadow-2xl sm:p-10">
             <span className="absolute left-6 top-1 text-7xl leading-none text-gold-500/10">“</span>
-            <p className="relative pt-5">With the right consultant it's not about the margins — it's about the relationship. That's the bar we hold ourselves to on every brief.</p>
+            <p className="relative pt-5">With the right consultant it's not about the margins - it's about the relationship. That's the bar we hold ourselves to on every brief.</p>
             <footer className="mt-6 text-sm font-semibold text-gold-400">The TechStax standard</footer>
           </blockquote>
         </div>
@@ -253,7 +253,7 @@ export function LandingPage() {
             <div className="relative z-10 max-w-2xl">
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-gold-600">Candidates</p>
               <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">Sixty seconds now. The right call later.</h2>
-              <p className="mt-5 leading-7 text-slate-600">Drop your CV once and you're on the radar of every TechStax consultant. When a role genuinely fits, you hear from us — not a mail-merge.</p>
+              <p className="mt-5 leading-7 text-slate-600">Drop your CV once and you're on the radar of every TechStax consultant. When a role genuinely fits, you hear from us - not a mail-merge.</p>
               <Link to="/drop-resume" className="btn-primary mt-8 px-7 py-3.5 inline-flex">Upload your CV <ArrowRight size={16} /></Link>
             </div>
           </div>
@@ -264,7 +264,7 @@ export function LandingPage() {
         <div className="page-shell">
           <FileText className="mx-auto size-12 text-gold-500 filter drop-shadow-[0_0_8px_rgba(229,193,88,0.2)]" />
           <h2 className="mx-auto mt-6 max-w-5xl px-1 pb-2 text-3xl font-extrabold leading-[1.12] tracking-tight text-white sm:text-4xl lg:text-5xl">
-            Hiring? Looking?<span className="mt-2 block text-gradient-gold pb-2">Either way — talk to us.</span>
+            Hiring? Looking?<span className="mt-2 block text-gradient-gold pb-2">Either way - talk to us.</span>
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-300">The build-out won't wait, and neither will the good people. Start the conversation today.</p>
           <a

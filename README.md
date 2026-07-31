@@ -124,11 +124,11 @@ Email and Notion settings are optional. Submissions are still saved to MongoDB w
 
 The Notion database should contain these properties:
 
-- `Name` — title
-- `Email` — email
-- `Phone` — phone number
-- `Expected Daily Rate` — number
-- `CV File` — URL
+- `Name` - title
+- `Email` - email
+- `Phone` - phone number
+- `Expected Daily Rate` - number
+- `CV File` - URL
 
 ## API
 

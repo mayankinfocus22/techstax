@@ -9,14 +9,9 @@ export function AppShell() {
           <Logo />
           <nav className="hidden items-center gap-6 text-sm font-semibold text-slate-300 lg:flex">
             <a href="/#expertise" className="transition hover:text-gold-500">Expertise</a>
-            <a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=contact%40techstax.com.au&su=Employer%20enquiry"
-              target="_blank"
-              rel="noreferrer"
-              className="transition hover:text-gold-500"
-            >
+            <Link to="/employers" className="transition hover:text-gold-500">
               Employers
-            </a>
+            </Link>
             <a href="/#insights" className="transition hover:text-gold-500">Insights</a>
             <a href="/#about" className="transition hover:text-gold-500">About</a>
           </nav>

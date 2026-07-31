@@ -40,7 +40,10 @@ export const submitCv = asyncHandler(async (request: Request, response: Response
   const { name, email, phone, expectedDailyRate } = validationResult.data;
   const cvFileName = file.originalname;
 
-  // 1. Route to Email Inbox (Nodemailer)
+  let emailSent = false;
+  let oneDriveUploaded = false;
+
+  // 1. Route to Email Inbox (Nodemailer or Graph API)
   try {
     await sendCandidateEmail({
       name,
@@ -50,25 +53,35 @@ export const submitCv = asyncHandler(async (request: Request, response: Response
       cvFileName,
       storageKey: "resumes/" + file.filename
     });
+    emailSent = true;
   } catch (emailError) {
     console.error("❌ Failed to send candidate email:", emailError);
   }
 
-  // 2. Populate OneDrive candidate database and cleanup local file
+  // 2. Populate OneDrive candidate database
   let oneDriveResult;
   try {
     const fileBuffer = await fs.readFile(file.path);
     oneDriveResult = await uploadFileToOneDrive(fileBuffer, file.originalname);
-  } finally {
+    oneDriveUploaded = true;
+  } catch (oneDriveError) {
+    console.error("❌ Failed to upload CV to OneDrive due to permission or policy blocks:", oneDriveError);
+  }
+
+  // Cleanup: Only delete the local file if it was safely saved in OneDrive or sent via email.
+  // Otherwise, keep the local file in the uploads directory as a fallback backup.
+  if (oneDriveUploaded || emailSent) {
     try {
       await fs.unlink(file.path);
     } catch (cleanupError) {
       console.error("❌ Failed to clean up local temporary file:", cleanupError);
     }
+  } else {
+    console.warn(`⚠️ Both email and OneDrive upload failed. Keeping CV local backup at: ${file.path}`);
   }
 
   return sendSuccess(response, {
     message: "Thank you! Your interest and CV have been successfully registered.",
-    id: oneDriveResult?.id || "unknown"
+    id: oneDriveResult?.id || "local-backup"
   }, 201);
 });
